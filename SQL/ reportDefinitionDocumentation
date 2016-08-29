@@ -1,0 +1,11 @@
+SELECT 
+'vCloud Air Ops - Customer Revenue Capacity Data File' AS [Report Name], 
+c.name AS [Data Element Name],
+IIF(ty.name LIKE '%char%', 'text', ty.name) AS [Data Element Type],
+ep.value AS [Notes]
+FROM sys.tables t
+JOIN sys.columns c ON c.object_id = t.object_id
+JOIN sys.extended_properties ep ON ep.major_id = t.object_id and ep.minor_id = c.column_id
+JOIN sys.types ty ON ty.user_type_id = c.user_type_id
+WHERE t.name = 'DimFactRevenue2016'
+ORDER BY t.name, c.column_id;
