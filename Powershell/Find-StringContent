@@ -1,0 +1,2 @@
+cd <Path>
+Get-ChildItem -recurse | Select-String -pattern "vwClusterHealth" | group path | select name
